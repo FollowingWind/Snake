@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>贪吃蛇</title>
+<style type="text/css">
+	* {
+		font-size: 14px;
+		margin: 0px;
+		padding: 0px;
+	}
+	button {
+		font-size: 14px;
+		outline: none;
+	}
+	table {
+		border-collapse: collapse;
+		border: 2px #8e8e8e solid;
+	}
+	td {
+		width: 20px;
+		height: 20px;
+		font-size: 0px;
+		border: 2px #8e8e8e solid;
+	}
+	body {
+		background: url(images/bg.jpg);
+	}
+	#container {
+		width: 1000px;
+		margin: 0 auto;
+	}
+	#buttons {
+		width: 300px;
+		margin-top: 30px;
+		margin-left: 30px;
+		float: left;
+	}
+	#buttons .btn {
+		width: 160px;
+		height: 40px;
+		border-radius: 6px;
+		margin-left: 70px;
+		margin-top: 50px;
+		font-size: 20px;
+	}
+	#main {
+		margin-top: 30px;
+		float: left;
+	}
+	#buttons h1 {
+		width: 200px;
+		height: 80px;
+		line-height: 80px;
+		margin: 0 auto;
+		font-size: 30px;
+		font-weight: bold;
+		margin-top: 20px;
+	}
+	#buttons .rule {
+		width: 200px;
+		margin: 0 auto;
+		border: 2px #f3f3f3 solid;
+	}
+	#buttons .rule p {
+		font-size: 20px;
+		height: 40px;
+		line-height: 40px;
+	}
+</style>
+<script type="text/javascript" src="js/snake_class.js"></script>
+</head>
+<body onload="Snake.init();">
+	<div id="container">
+		<div id="buttons">
+			<button class="btn" id="btn_start">开始/暂停</button>
+			<br/>
+			<button class="btn" id="btn_restart">重新开始</button>
+			<h1>贪吃蛇</h1>
+			<div class="rule">
+				<p>游戏规则：</p>
+				<p>点击开始游戏后，按方向键控制蛇的移动，并去吃食物；贪吃蛇碰到边界和自身后游戏结束...</p>
+			</div>
+		</div>
+		<div id="main">
+			<table id="table_view" border="1" cellspacing="0" cellpadding="0"></table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$('btn_start').onclick = function() {
+		if(Snake.paused) {
+			Snake.flag = true;
+			Snake.moveSnake();
+			Snake.paused = false;
+		} else {
+			Snake.pause();
+			Snake.paused = true;
+			Snake.flag = false;
+		}		
+	}
+	$('btn_restart').onclick = function() {
+		$("btn_start").disabled = false;
+		Snake.restart();
+		Snake.moveSnake();
+		Snake.paused = false;
+	}
+</script>
+</html>
+<!--版权所有者suifeng，使用须注明出处。如有问题请发送email至1975658536@qq.com-->
